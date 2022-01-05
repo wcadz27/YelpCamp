@@ -1,3 +1,9 @@
+if(process.env.NODE_ENV !== 'production'){
+    require('dotenv').config();
+}
+
+console.log(process.env.SECRET)
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -13,6 +19,7 @@ const User = require('./models/user');
 const userRoutes = require('./routes/users')
 const campgroundsRoutes = require('./routes/campgrounds');
 const reviewsRoutes = require('./routes/reviews');
+const req = require('express/lib/request');
 
 mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useUnifiedTopology: true,
