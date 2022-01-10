@@ -8,7 +8,11 @@
         <%for(let campground of campgrounds) { %>
             <div class="row">
                 <div class="col-md-4">
+                    <% if(campground.image.length) {%> 
                     <img class="img-fluid" src="<%=campground.image[0].url%>" alt="">
+                    <% } else { %>  
+                     <img class="img-fluid" src="https://res.cloudinary.com/dyr50c85v/image/upload/v1641561799/YelpCamp/px2lv9butjgzyu4omtpk.jpg" alt="">
+                    <% } %> 
                 </div>
                 <div class="col-md-8">
                     <h5 class="card-title"><%= campground.title %></h5>
