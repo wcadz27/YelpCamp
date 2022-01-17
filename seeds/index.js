@@ -4,7 +4,7 @@ const { places, descriptors } = require("./seedHelpers");
 const cities = require("./cities");
 
 mongoose.connect("mongodb://localhost:27017/yelp-camp", {
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
 });
 
 const db = mongoose.connection;
@@ -17,7 +17,7 @@ const sample = array => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
     await Campground.deleteMany({});
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 300; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
         const price = Math.floor(Math.random() * 20) + 10;
         const camp = new Campground({
@@ -32,19 +32,19 @@ const seedDB = async () => {
                 type: "Point",
                 coordinates: [
                     cities[random1000].longitude,
-                    cities[random1000].latitude,
-                ],
+                    cities[random1000].latitude
+                ]
             },
             image: [
                 {
                     url: "https://res.cloudinary.com/dyr50c85v/image/upload/v1641561799/YelpCamp/px2lv9butjgzyu4omtpk.jpg",
-                    filename: "YelpCamp/px2lv9butjgzyu4omtpk",
+                    filename: "YelpCamp/px2lv9butjgzyu4omtpk"
                 },
                 {
                     url: "https://res.cloudinary.com/dyr50c85v/image/upload/v1641561799/YelpCamp/uxlttmaprkxqkhcelgzj.jpg",
-                    filename: "YelpCamp/uxlttmaprkxqkhcelgzj",
-                },
-            ],
+                    filename: "YelpCamp/uxlttmaprkxqkhcelgzj"
+                }
+            ]
         });
         await camp.save();
     }
