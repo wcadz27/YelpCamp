@@ -13,8 +13,7 @@ ImageSchema.virtual("thumbnail").get(function () {
 
 const opts = { toJSON: { virtuals: true } };
 
-const CampgroundSchema = new Schema(
-    {
+const CampgroundSchema = new Schema({
         title: String,
         image: [ImageSchema],
         geometry: {
@@ -41,9 +40,12 @@ const CampgroundSchema = new Schema(
                 ref: "Review"
             }
         ]
-    },
-    opts
-);
+}, opts);
+
+CampgroundSchema.virtual("properties.popUpMarkup").get(function () {
+    return `<strong><a href="/campgrounds/${this._id}">${this.title}</a></strong>
+    <p>${this.description.substring(0, 25)}...</p>`;
+});
 
 CampgroundSchema.post("findOneAndDelete", async function (doc) {
     if (doc) {

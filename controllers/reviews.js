@@ -6,6 +6,7 @@ module.exports.createReview = async (req, res) => {
     const review = new Review(req.body.review);
     review.author = req.user._id;
     campground.reviews.push(review);
+    console.log(req.user._id);
     await review.save();
     await campground.save();
     req.flash("success", "Thank you for leaving a review!");
